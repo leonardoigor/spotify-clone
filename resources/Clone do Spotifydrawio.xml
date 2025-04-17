@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.13">
+  <diagram name="Arquitetura do Sistema de Streaming" id="rkFWZz6vXudSEKn6Q1ST">
+    <mxGraphModel dx="1723" dy="926" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VBklkBlA7Sp-Ml3zA3GZ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cliente" target="backend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente" value="CLIENTE (Frontend)" style="swimlane;fillColor=#dae8fc;" parent="1" vertex="1">
+          <mxGeometry x="60" y="80" width="1200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="webapp" value="Web App (React.js)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="cliente" vertex="1">
+          <mxGeometry x="20" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileapp" value="Mobile App (React Native/iOS)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="cliente" vertex="1">
+          <mxGeometry x="220" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="desktopapp" value="Desktop App (Electron)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="cliente" vertex="1">
+          <mxGeometry x="420" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tvapp" value="TV/OTT App (Android TV)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="cliente" vertex="1">
+          <mxGeometry x="620" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VBklkBlA7Sp-Ml3zA3GZ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="backend" target="infra">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="backend" value="BACKEND (Microsserviços)" style="swimlane;fillColor=#f8cecc;" parent="1" vertex="1">
+          <mxGeometry x="60" y="385" width="1200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" value="API Gateway (Node.js / Kong)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="backend" vertex="1">
+          <mxGeometry x="20" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="Serviço de Autenticação (Auth0 / JWT)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="backend" vertex="1">
+          <mxGeometry x="220" y="40" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo" value="Serviço de Catálogo de Músicas" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="backend" vertex="1">
+          <mxGeometry x="440" y="40" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="recomendacao" value="Serviço de Recomendação (Python / ML)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="backend" vertex="1">
+          <mxGeometry x="660" y="40" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VBklkBlA7Sp-Ml3zA3GZ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="infra" target="analytics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="infra" value="INFRAESTRUTURA" style="swimlane;fillColor=#e1d5e7;" parent="1" vertex="1">
+          <mxGeometry x="60" y="640" width="1200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="armazenamento" value="Armazenamento de Arquivos (AWS S3 / Google Cloud Storage)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="infra" vertex="1">
+          <mxGeometry x="20" y="40" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cdn" value="CDN para Conteúdo Estático (Cloudflare)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="infra" vertex="1">
+          <mxGeometry x="320" y="40" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="streaming" value="Streaming de Áudio (WebRTC / HLS / DASH)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="infra" vertex="1">
+          <mxGeometry x="580" y="40" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cache" value="Cache (Redis)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="infra" vertex="1">
+          <mxGeometry x="840" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="banco" value="BANCO DE DADOS" style="swimlane;fillColor=#d5e8d4;" parent="1" vertex="1">
+          <mxGeometry x="200" y="950" width="500" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="postgres" value="PostgreSQL (Dados de usuários, playlists)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="banco" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo" value="MongoDB (Dados de streaming)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="banco" vertex="1">
+          <mxGeometry x="260" y="40" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="analytics" value="ANALYTICS &amp; MONITORAMENTO" style="swimlane;fillColor=#fff2cc;" parent="1" vertex="1">
+          <mxGeometry x="720" y="950" width="400" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="elastic" value="Elastic Search / Kibana" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="analytics" vertex="1">
+          <mxGeometry x="20" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="prometheus" value="Prometheus / Grafana" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;" parent="analytics" vertex="1">
+          <mxGeometry x="200" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VBklkBlA7Sp-Ml3zA3GZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.516;entryY=-0.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="banco">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="631" y="840" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
