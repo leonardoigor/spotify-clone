@@ -1,56 +1,151 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material';
-import { Home, Search, LibraryMusic, Favorite } from '@mui/icons-material';
-import { mockUser } from '../../mocks/user';
+import React from 'react';
+import {
+    Box,
+    Typography,
+    IconButton,
+    Button,
+    Paper
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import LanguageIcon from '@mui/icons-material/Language';
 
-const Sidebar = () => {
+export default function () {
     return (
-        <Drawer
-            variant="permanent"
+        <Box
             sx={{
-                width: 240,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                    width: 240,
-                    boxSizing: 'border-box',
-                    backgroundColor: '#000',
-                    color: '#fff'
-                },
+                width: 300,
+                height: '100vh',
+                bgcolor: '#000',
+                color: '#fff',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                p: 2,
+                boxSizing: 'border-box',
             }}
         >
-            <List>
-                <ListItem component="a" href="/">
-                    <ListItemIcon sx={{ color: '#fff' }}><Home /></ListItemIcon>
-                    <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem component="a" href="/search">
-                    <ListItemIcon sx={{ color: '#fff' }}><Search /></ListItemIcon>
-                    <ListItemText primary="Search" />
-                </ListItem>
-                <ListItem component="a" href="/library">
-                    <ListItemIcon sx={{ color: '#fff' }}><LibraryMusic /></ListItemIcon>
-                    <ListItemText primary="Your Library" />
-                </ListItem>
-            </List>
-            <Divider sx={{ backgroundColor: '#333' }} />
-            <List>
-                {mockUser.playlists.map((playlist) => (
-                    <ListItem
-                        component="a"
-                        href={`/playlist/${playlist.id}`}
-                        key={playlist.id}
+            {/* Topo: Título e cards */}
+            <Box>
+                {/* Header */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mb: 2,
+                    }}
+                >
+                    <Typography variant="subtitle1" fontWeight="bold">
+                        Sua Biblioteca
+                    </Typography>
+                    <IconButton sx={{ color: '#fff' }}>
+                        <AddIcon />
+                    </IconButton>
+                </Box>
+
+                {/* Card 1 */}
+                <Paper
+                    sx={{
+                        bgcolor: '#121212',
+                        borderRadius: 2,
+                        p: 2,
+                        mb: 2,
+                    }}
+                >
+                    <Typography fontWeight="bold" gutterBottom>
+                        Crie sua primeira playlist
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
+                        É fácil, vamos te ajudar.
+                    </Typography>
+                    <Button
+                        variant="contained"
                         sx={{
-                            '&:hover': {
-                                backgroundColor: '#282828'
-                            }
+                            mt: 1,
+                            bgcolor: '#fff',
+                            color: '#000',
+                            textTransform: 'none',
+                            borderRadius: 5,
+                            fontWeight: 'bold',
                         }}
                     >
-                        <ListItemIcon sx={{ color: '#fff' }}><Favorite /></ListItemIcon>
-                        <ListItemText primary={playlist.name} />
-                    </ListItem>
-                ))}
-            </List>
-        </Drawer>
+                        Criar playlist
+                    </Button>
+                </Paper>
+
+                {/* Card 2 */}
+                <Paper
+                    sx={{
+                        bgcolor: '#121212',
+                        borderRadius: 2,
+                        p: 2,
+                    }}
+                >
+                    <Typography fontWeight="bold" gutterBottom>
+                        Que tal seguir um podcast novo?
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
+                        Avisaremos você sobre novos episódios.
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            mt: 1,
+                            bgcolor: '#fff',
+                            color: '#000',
+                            textTransform: 'none',
+                            borderRadius: 5,
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Explore podcasts
+                    </Button>
+                </Paper>
+            </Box>
+
+            {/* Rodapé */}
+            <Box sx={{ mt: 3 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: 1,
+                        fontSize: 12,
+                        color: '#b3b3b3',
+                        mb: 2,
+                    }}
+                >
+                    {[
+                        'Legal',
+                        'Segurança e Centro de privacidade',
+                        'Política de privacidade',
+                        'Cookies',
+                        'Sobre anúncios',
+                        'Acessibilidade',
+                        'Cookies',
+                    ].map((text) => (
+                        <Typography key={text} variant="caption">
+                            {text}
+                        </Typography>
+                    ))}
+                </Box>
+
+                <Button
+                    variant="outlined"
+                    startIcon={<LanguageIcon />}
+                    sx={{
+                        borderRadius: 5,
+                        textTransform: 'none',
+                        color: '#fff',
+                        borderColor: '#fff',
+                        fontSize: 12,
+                        px: 2,
+                    }}
+                >
+                    Português do Brasil
+                </Button>
+            </Box>
+        </Box>
     );
 };
 
-export default Sidebar;
