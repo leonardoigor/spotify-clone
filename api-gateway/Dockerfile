@@ -1,28 +1,29 @@
-# Etapa 1: Build
-FROM golang:1.21 AS builder
+# Etapa 1: Usar a imagem oficial do Golang para compilar o código
+FROM golang:1.24.2 AS builder
 
+# Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos go mod e sum para cache
-# COPY go.mod go.sum ./
-# RUN go mod download
-
-# Copia o código-fonte
+# Copiar os arquivos Go para o container
 COPY . .
 
-# Compila o binário (para o Linux, estático)
-# RUN CGO_ENABLED=0 GOOS=linux go build -o app
+# Baixar as dependências
+RUN go mod tidy
 
-# Etapa 2: Imagem final enxuta
-FROM alpine:latest
+# Compilar o código Go
+RUN go build -o api-gateway
 
+# Etapa 2: Usar uma imagem mais leve para rodar o binário
+FROM debian:bookworm-slim
+
+# Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia o binário da etapa de build
-# COPY --from=builder /app/app .
+# Copiar o binário compilado da etapa anterior
+COPY --from=builder /app/api-gateway .
 
-# Define porta (opcional)
-EXPOSE 3000
+# Expor a porta (ajuste se necessário)
+EXPOSE 8000
 
-# Comando padrão
-# CMD ["./app"]
+# Comando para rodar o binário compilado
+CMD ["/app/api-gateway"]
