@@ -1,0 +1,16 @@
+{
+    "routes": [
+        {
+            "path": "/users/",
+            "target": "http://host.docker.internal:5500"
+        },
+        {
+            "path": "/products/",
+            "target": "http://localhost:3002"
+        },
+        {
+            "path": "/get",
+            "target": "direct"
+        }
+    ]
+}

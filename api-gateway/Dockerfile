@@ -21,6 +21,7 @@ WORKDIR /app
 
 # Copiar o binário compilado da etapa anterior
 COPY --from=builder /app/api-gateway .
+COPY --from=builder /app/config.json .
 
 # Expor a porta (ajuste se necessário)
 EXPOSE 8000
